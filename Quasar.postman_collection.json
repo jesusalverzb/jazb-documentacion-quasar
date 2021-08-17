@@ -6,7 +6,27 @@
 	},
 	"item": [
 		{
-			"name": "topsecret",
+			"name": "topsecret [mensaje desifrado]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.position.x).to.eql(-58.315252587138595);\r",
+							"    pm.expect(jsonData.position.y).to.eql(-69.55141837312165);\r",
+							"    pm.expect(jsonData.message).to.eql(\"este es un mensaje secreto para un general\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -37,7 +57,169 @@
 			"response": []
 		},
 		{
+			"name": "topsecret [mensaje desifrado con 5 satelites]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"este es un mensaje secreto para un general\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"satellites\": [\r\n        {\r\n            \"name\": \"kenobi\",\r\n            \"distance\": 100.0,\r\n            \"message\": [\"este\", \"\", \"\", \"mensaje\", \"\", \"para\", \"\", \"\"]\r\n        },\r\n        {\r\n            \"name\": \"skywalker\",\r\n            \"distance\": 115.5,\r\n            \"message\": [\"\", \"es\", \"\", \"\", \"\", \"\", \"\", \"\"]\r\n        },\r\n        {\r\n            \"name\": \"sato\",\r\n            \"distance\": 142.7,\r\n            \"message\": [\"este\", \"\", \"\", \"\", \"secreto\", \"\", \"\", \"\"]\r\n        },\r\n        {\r\n            \"name\": \"sato1\",\r\n            \"distance\": 142.7,\r\n            \"message\": [\"\", \"\", \"un\", \"\", \"\", \"\", \"\", \"\"]\r\n        },\r\n        {\r\n            \"name\": \"sato1\",\r\n            \"distance\": 142.7,\r\n            \"message\": [\"\", \"\", \"\", \"\", \"\", \"\", \"un\", \"general\"]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jazb-fuego-quasar.herokuapp.com/api/v1/topsecret",
+					"protocol": "https",
+					"host": [
+						"jazb-fuego-quasar",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"topsecret"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topsecret [mensaje desifrado con 12 palabras]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.position.x).to.eql(-58.315252587138595);\r",
+							"    pm.expect(jsonData.position.y).to.eql(-69.55141837312165);\r",
+							"    pm.expect(jsonData.message).to.eql(\"este es un mensaje secreto para el general Mario no enviar refuerzos\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"satellites\": [\r\n        {\r\n            \"name\": \"kenobi\",\r\n            \"distance\": 100.0,\r\n            \"message\": [\"\", \"este\", \"\", \"\", \"mensaje\", \"\", \"\", \"el\", \"\", \"\", \"no\", \"enviar\", \"\"]\r\n        },\r\n        {\r\n            \"name\": \"skywalker\",\r\n            \"distance\": 115.5,\r\n            \"message\": [\"\", \"es\", \"un\", \"mensaje\", \"\", \"para\", \"el\", \"general\", \"\", \"no\", \"\", \"refuerzos\"]\r\n        },\r\n        {\r\n            \"name\": \"sato\",\r\n            \"distance\": 142.7,\r\n            \"message\": [\"\", \"\", \"\", \"un\", \"\", \"secreto\", \"\", \"el\", \"\", \"Mario\", \"\", \"enviar\", \"\"]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jazb-fuego-quasar.herokuapp.com/api/v1/topsecret",
+					"protocol": "https",
+					"host": [
+						"jazb-fuego-quasar",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"topsecret"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topsecret [mensaje no desifrado]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"satellites\": [\r\n        {\r\n            \"name\": \"kenobi\",\r\n            \"distance\": 100.0,\r\n            \"message\": [\"este\", \"\", \"\", \"mensaje\", \"\", \"para\", \"\", \"\"]\r\n        },\r\n        {\r\n            \"name\": \"skywalker\",\r\n            \"distance\": 115.5,\r\n            \"message\": [\"\", \"es\", \"\", \"\", \"secreto\", \"\", \"\", \"general\"]\r\n        },\r\n        {\r\n            \"name\": \"sato\",\r\n            \"distance\": 142.7,\r\n            \"message\": [\"este\", \"\", \"\", \"secreto\", \"\", \"\", \"\", \"\"]\r\n        },\r\n        {\r\n            \"name\": \"sato\",\r\n            \"distance\": 142.7,\r\n            \"message\": [\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"general\"]\r\n        },\r\n        {\r\n            \"name\": \"sato\",\r\n            \"distance\": 142.7,\r\n            \"message\": [\"\", \"\", \"\", \"mensaje\", \"secreto\", \"\", \"\", \"\"]\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://jazb-fuego-quasar.herokuapp.com/api/v1/topsecret",
+					"protocol": "https",
+					"host": [
+						"jazb-fuego-quasar",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"topsecret"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "topsecret_split kenobi",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Satellite: kenobi, set up correctly\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -70,6 +252,24 @@
 		},
 		{
 			"name": "topsecret_split skywalker",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Satellite: skywalker, set up correctly\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -102,6 +302,24 @@
 		},
 		{
 			"name": "topsecret_split sato",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Satellite: sato, set up correctly\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
